@@ -217,7 +217,7 @@ def get_pol_lang_fc(sel):
 def main():
     start_page = 260000
     end_page = 651200
-    pages = list(range(start_page, start_page+5))
+    pages = list(range(start_page, end_page+1))
     try:
         conn = psycopg2.connect(
                 host = hostname,
@@ -267,20 +267,19 @@ def main():
                 html = get_data(page)
                 sel = Selector( text = html )
 
-                # html = open('website.txt', 'r').read()
-                # sel = Selector( text = html )
-
                 Filing_no = get_fil_no(sel)
                 Filing_date = get_fil_date(sel)
-                # Filing_date = datetime.strptime(Filing_date, '%m/%d/%Y').date()
 
                 comp_list = get_comp_sect(sel)
                 complaint = get_comp_values(comp_list)
+
                 ins_list = get_ins_sect(sel)
                 Insured_Last_Business_Name, Insured_First_Name = get_ins_name(ins_list)
                 Insured_Polciy_No, Insured_Claim_No = get_ins_no(ins_list)
+
                 att_list = get_att_sect(sel)
                 attorney = get_att_values(att_list)
+
                 Violation_Insurer_Name = get_vio_ins_no(sel)
                 Violation_NAIC_Company_Code = get_vio_naic_cc(sel)
                 vio_list = get_other_vio_sect(sel)
