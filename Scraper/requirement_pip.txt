@@ -1,0 +1,5 @@
+# This file may be used to create an environment using:
+# python -m venv --name <env> 
+# platform: windows10
+scrapy=2.7.0
+psycopg2=2.9.5
